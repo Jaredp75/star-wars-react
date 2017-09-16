@@ -99,14 +99,14 @@ let vehicles = vehicleArray.map((vehicles) => {
     <div className="col-sm-6" key={vehicles.name}>
       <div className="card">
         <div className="card-block">
-          <h4 className="card-title">Vehicle: {vehicles.name}</h4>
+          <h4 className="card-title">{vehicles.name}</h4>
           <h6 className="card-subtitle mb-2 text-muted">Model: {vehicles.model}</h6>
           <h6 className="card-subtitle mb-2 text-muted">Manufacturer: {vehicles.manufacturer}</h6>
-          <h6 className="card-subtitle mb-2 text-muted">Class: {vehicles.vehicles_class}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Class: {vehicles.vehicle_class}</h6>
           <h6 className="card-subtitle mb-2 text-muted">Passengers: {vehicles.passengers}</h6>
           <h6 className="card-subtitle mb-2 text-muted">Crew: {vehicles.crew}</h6>
           <h6 className="card-subtitle mb-2 text-muted">Length: {vehicles.length}</h6>
-          <h6 className="card-subtitle mb-2 text-muted">Max Speed: {vehicles.max_atmostphering_speed}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Max Speed: {vehicles.max_atmosphering_speed}</h6>
           <h6 className="card-subtitle mb-2 text-muted">Cargo Capacity: {vehicles.cargo_capacity}</h6>
         </div>
       </div>
