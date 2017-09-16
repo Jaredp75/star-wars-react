@@ -7,7 +7,10 @@ class App extends Component {
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
 constructor(props){
-        super(props);
+    super(props);
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
           vehicles:[],
@@ -32,6 +35,8 @@ constructor(props){
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
+
+
   handleNameChange(event){
       this.setState({value: event.target.value});
     }
@@ -45,7 +50,7 @@ constructor(props){
   // Enter your code below:
 handleSubmit(event){
   event.preventDefault();
-  this.setState({})
+  this.setState({pilot: this.state.value, value: ""})
 }
 
 
@@ -63,7 +68,17 @@ handleSubmit(event){
   // In your response look for 'results'. It should return this array.
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
+  componentDidMount() {
+    fetch("https://swapi.co/api/vehicles/").then((response) => {
+      return response.json()
+    }).then((data) => {
+      let vehicles = data.results;
+      console.log(vehicles)
+      this.setState({vehicles: vehicles})
+    })
 
+//        console.log('Component DID MOUNT!')
+   }
 
   // RENDER
   // Before you can map over the data you've fetched, you will first need to store that 'state' in a variable.
@@ -78,6 +93,26 @@ handleSubmit(event){
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
+let vehicleArray = this.state.vehicles;
+let vehicles = vehicleArray.map((vehicles) => {
+  return (
+    <div className="col-sm-6" key={vehicles.name}>
+      <div className="card">
+        <div className="card-block">
+          <h4 className="card-title">Vehicle: {vehicles.name}</h4>
+          <h6 className="card-subtitle mb-2 text-muted">Model: {vehicles.model}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Manufacturer: {vehicles.manufacturer}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Class: {vehicles.vehicles_class}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Passengers: {vehicles.passengers}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Crew: {vehicles.crew}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Length: {vehicles.length}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Max Speed: {vehicles.max_atmostphering_speed}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Cargo Capacity: {vehicles.cargo_capacity}</h6>
+        </div>
+      </div>
+    </div>
+
+  )
 
 
 
@@ -108,7 +143,31 @@ handleSubmit(event){
          jumbotron section, form section, vehicle cards section.
          Your form will also need a header in which you will pass the state of the form upon submit.
          */}
+         <main className="row">
+           <section className="col-md-10 offset-md-1">
+             <div className="jumbotron">
+               <h1 className="display-3">Star Wars</h1> <hr className="my-4"/> <p className="lead">The Vehicles of Star Wars</p>
+            </div>
+            <div className="card-form">
+              <div className="card-block">
+                <h2 className="card-title">What is your name, pilot?</h2>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <input className="form-control col-md-4" id="pilotName" onChange={this.handleNameChange}
+                      name="name" type="text" value={this.state.value} placeholder="Enter your name"/>
+                  </div>
+                  <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+                <h1>{this.state.pilot}</h1>
+              </div>
+            </div>
+            <div className="row">
+              {vehicles}
+            </div>
+          </section>
+        </main>
       </div>
+
     );
   }
 }
