@@ -6,14 +6,35 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
+constructor(props){
+        super(props);
 
+        this.state = {
+          vehicles:[],
+          value: "",
+          pilot: ""
+        };
+}
+
+
+
+
+
+  //constructor(props) {
+  //      super(props);
+
+//        this.state = {
+//           data: 0
+//        }
 
 
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
-
+  handleNameChange(event){
+      this.setState({value: event.target.value});
+    }
 
 
   //  FORM: SUBMIT METHOD
@@ -22,6 +43,17 @@ class App extends Component {
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
+handleSubmit(event){
+  event.preventDefault();
+  this.setState({})
+}
+
+
+
+//  handleSubmit(event){
+//        event.preventDefault();
+//        alert('Thank you, ' + this.state.name + ' your name was submitted');
+//    }
 
 
   // LIFECYCLE
@@ -46,6 +78,28 @@ class App extends Component {
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
+
+
+
+
+//    let quakes = earthquakes.features.map((earthquake) => {
+//          return (
+//            <div className="col-sm-6" key={earthquake.id}>
+//              <div className="card" >
+//                <div className="card-block">
+//                  <h4 className="card-title">{earthquake.properties.place}</h4>
+//                  <h6 className="card-subtitle mb-2 text-muted">Magnitude: {earthquake.properties.mag}</h6>
+//                  <h6 className="card-subtitle mb-2 text-muted">Time: {moment(earthquake.properties.time).format('llll')}</h6>
+//                  <p className="card-text">Coordinates: {earthquake.geometry.coordinates}</p>
+
+//                  <a href={earthquake.properties.url} className="card-link">USGS Event Link</a>
+//                </div>
+//              </div>
+//            </div>
+//          )
+//   });
+
+
     })
     return (
       <div className="App">
